@@ -30,7 +30,13 @@ This project is a Spring Cloud Eureka service discovery server.
 
 2.  Run the Docker container:
    ```bash
-   docker run -p 8761:8761 -d my-eureka-server 
+   docker run -d --name my-eureka-server --network my-network -p 8761:8761 my-eureka-server
    ```
 
 * Access the Eureka dashboard at: http://localhost:8761
+
+Note on Docker Network
+The --network my-network argument in the Docker run command is crucial for ensuring that your Eureka server and any microservices running in Docker containers can communicate with each other. This requires that a Docker network named my-network exists. If it does not exist, you can create it by running:
+   ```bash
+   docker network create my-network
+   ```
